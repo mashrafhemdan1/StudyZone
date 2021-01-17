@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/taskName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:ems="10"
+        android:hint="Task Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/task_catagory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/taskDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/task_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_Subject" />
+
+    <Spinner
+        android:id="@+id/task_Subject"
+        android:layout_width="154dp"
+        android:layout_height="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/taskDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+
+    <Spinner
+        android:id="@+id/task_catagory"
+        android:layout_width="202dp"
+        android:layout_height="37dp"
+        app:layout_constraintBottom_toTopOf="@+id/time_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+
+    <Button
+        android:id="@+id/task_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskDesc" />
+
+    <TextView
+        android:id="@+id/time_picker"
+        android:layout_width="130dp"
+        android:layout_height="42dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:hint="Select Time"
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/ic_time"
+        app:layout_constraintBottom_toTopOf="@+id/task_Subject"
+        app:layout_constraintEnd_toStartOf="@+id/date_picker"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_catagory" />
+
+    <TextView
+        android:id="@+id/date_picker"
+        android:layout_width="130dp"
+        android:layout_height="42dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:hint="Select Date"
+        android:textSize="16sp"
+        app:drawableStartCompat="@drawable/ic_date"
+        app:layout_constraintBottom_toTopOf="@+id/task_Subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/time_picker"
+        app:layout_constraintTop_toBottomOf="@+id/task_catagory" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

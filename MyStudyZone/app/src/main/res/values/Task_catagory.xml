@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="task_catagory">
+        <item>Assignment</item>
+        <item>Quiz</item>
+        <item>Project</item>
+        <item>Research</item>
+        <item>Catagory 5</item>
+    </string-array>
+    <string-array name="task_subject">
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Biology</item>
+        <item>Computer Science</item>
+        <item>Communications</item>
+        <item>Software Engineering</item>
+        <item>Subject</item>
+    </string-array>
+</resources>
