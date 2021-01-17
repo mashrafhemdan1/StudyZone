@@ -1,2 +1,2 @@
 # StudyZone
-app for study optimization
+lock system, countdown timer and get duration fragment/activity 
