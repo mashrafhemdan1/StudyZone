@@ -31,9 +31,26 @@
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="settings_button">Settings</string>
     <string name="action_notification">Notification</string>
+    <string name="title_activity_addtask">AddTaskActivity</string>
+    <string name="action_today">Today</string>
+    <string name="action_day_view">Day view</string>
+    <string name="action_three_day_view">3 day view</string>
+    <string name="action_week_view">Week view</string>
+    <string name="title_activity_basic">Basic Example</string>
+    <string name="title_activity_asynchronous">Asynchronous Events</string>
+    <string name="async_error">Could not download events from the internet</string>
+    <string name="currentdate">CurrentDate</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="wed">Wed</string>
+    <string name="tue">Tue</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="todo">TODO</string>
+    <string name="addnewpairs">Add New Pairs</string>
 </resources>

@@ -1,23 +1,24 @@
 package com.example.mystudyzone;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.mystudyzone.ui.login.LoginActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
     private BottomAppBar bottomAppBar;
@@ -30,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(!logged_in){
+        /*if(!logged_in){
             Intent loginIntent = new Intent(this, LoginActivity.class);
             logged_in=true;
             startActivity(loginIntent);
-        }
+        }*/
 
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -50,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AddTaskFragment()).commit();
+                Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -60,23 +61,32 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment fragment = null;
-
+                    String tag = "";
+                    ActionBar actionbar = getSupportActionBar();
                     switch(item.getItemId()){
                         case R.id.action_home:
                             fragment = new HomeFragment();
+                            tag = "home";
+                            actionbar.setTitle("Home Page");
                             break;
                         case R.id.action_network:
-                            fragment = new PairsFragment();
+                            fragment = new MyPairsFragment();
+                            tag = "network";
+                            actionbar.setTitle("My Pairs");
                             break;
                         case R.id.action_StudyMode:
                             fragment = new StudyFragment();
+                            tag = "studyMode";
+                            actionbar.setTitle("Study Mode");
                             break;
                         case R.id.action_planner:
                             fragment = new PlannerFragment();
+                            tag = "planner";
+                            actionbar.setTitle("Planner");
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            fragment).commit();
+                            fragment, tag).commit();
                     return true;
                 }
             };
@@ -92,13 +102,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_notification:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new NotificationFragment(), "notification").commit();
                 return true;
 
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
     @Override

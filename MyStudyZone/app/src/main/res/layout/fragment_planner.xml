@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mystudyzone.PlannerFragment"
+    android:orientation="vertical"
+    android:background="#fff">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/buttonBasic"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Planner Fragment"
-        android:textSize= "30sp"
-        android:layout_centerInParent="true"/>
+        android:text="@string/title_activity_basic"
+        style="@style/Button"
+        android:textColor="@color/black"/>
 
+    <Button
+        android:id="@+id/buttonAsynchronous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_asynchronous"
+        style="@style/Button"
+        android:textColor="@color/black"/>
 
-</RelativeLayout>
+</LinearLayout>

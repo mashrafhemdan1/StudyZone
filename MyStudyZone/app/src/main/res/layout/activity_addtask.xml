@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settings_toolbar"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <EditText
         android:id="@+id/taskName"
         android:layout_width="wrap_content"
@@ -39,7 +51,8 @@
         android:layout_height="33dp"
         app:layout_constraintBottom_toTopOf="@+id/taskDesc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/time_picker" />
 
     <Spinner
@@ -48,7 +61,8 @@
         android:layout_height="37dp"
         app:layout_constraintBottom_toTopOf="@+id/time_picker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
     <Button
@@ -64,8 +78,8 @@
 
     <TextView
         android:id="@+id/time_picker"
-        android:layout_width="130dp"
-        android:layout_height="42dp"
+        android:layout_width="123dp"
+        android:layout_height="63dp"
         android:background="@android:drawable/editbox_background"
         android:drawablePadding="10dp"
         android:gravity="center"
@@ -73,15 +87,15 @@
         android:textSize="16sp"
         app:drawableStartCompat="@drawable/ic_time"
         app:layout_constraintBottom_toTopOf="@+id/task_Subject"
-        app:layout_constraintEnd_toStartOf="@+id/date_picker"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/date_picker"
         app:layout_constraintTop_toBottomOf="@+id/task_catagory" />
 
     <TextView
         android:id="@+id/date_picker"
-        android:layout_width="130dp"
-        android:layout_height="42dp"
+        android:layout_width="131dp"
+        android:layout_height="60dp"
         android:background="@android:drawable/editbox_background"
         android:drawablePadding="10dp"
         android:gravity="center"
@@ -89,10 +103,44 @@
         android:textSize="16sp"
         app:drawableStartCompat="@drawable/ic_date"
         app:layout_constraintBottom_toTopOf="@+id/task_Subject"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/time_picker"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/time_picker"
-        app:layout_constraintTop_toBottomOf="@+id/task_catagory" />
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/task_catagory"
+        app:layout_constraintVertical_bias="0.488" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Catagory"
+        app:layout_constraintBottom_toTopOf="@+id/time_picker"
+        app:layout_constraintEnd_toStartOf="@+id/task_catagory"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Subject"
+        app:layout_constraintBottom_toTopOf="@+id/taskDesc"
+        app:layout_constraintEnd_toStartOf="@+id/task_Subject"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deadline"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toStartOf="@+id/date_picker"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
