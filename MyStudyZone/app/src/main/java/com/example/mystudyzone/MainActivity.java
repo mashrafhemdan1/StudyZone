@@ -5,6 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import android.app.Notification;
 import android.content.Intent;
@@ -52,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
             logged_in=true;
             startActivity(loginIntent);
         }*/
+
+
+        //EDIT BY SHOURBAGY
+
+        //END OF EDIT
 
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
