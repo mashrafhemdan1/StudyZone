@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity (primaryKeys = {"name", "category", "subject", "date", "time"})
+@Entity
 public class Deadline {
     @NonNull
     public String name = "";
@@ -27,5 +27,14 @@ public class Deadline {
 
     @ColumnInfo(name = "grade")
     public String grade;
+
+    @ColumnInfo(name = "isStudied")
+    public boolean isStudied;
+
+    @PrimaryKey(autoGenerate = true)
+    public long id = 0;
+
+    @ColumnInfo
+    public boolean isFinised = false;
 
 }

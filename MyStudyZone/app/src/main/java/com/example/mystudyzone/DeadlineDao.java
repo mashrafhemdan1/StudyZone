@@ -18,6 +18,9 @@ public interface DeadlineDao {
     @Query("SELECT * FROM Deadline WHERE date > (:curDate) ORDER BY date, time")
     List<Deadline> getUpcoming(String curDate);
 
+    @Query("SELECT * FROM Deadline WHERE date > (:curDate)+7 AND isStudied = 0 ORDER BY date, time")
+    List<Deadline> getDeadlineForWeek(String curDate);
+
     @Insert
     void insertAll(Deadline... deads);
 
@@ -26,4 +29,11 @@ public interface DeadlineDao {
 
     @Delete
     void delete(Deadline dead);
+
+    @Query("SELECT count(*) FROM Deadline WHERE date < (:curDate) AND isFinised = 0")
+    int getCountFinished(String curDate);
+
+    @Query("SELECT count(*) FROM Deadline WHERE date < (:curDate)")
+    int getCountAll(String curDate);
+
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PlannerActivity"
+    android:orientation="vertical"
+    android:background="#fff">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ToolBarStyle"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <Button
+        android:id="@+id/buttonBasic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_basic"
+        style="@style/Button"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/buttonAsynchronous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_asynchronous"
+        style="@style/Button"
+        android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/buttonMonthlyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MonthlyView"
+        style="@style/Button"
+        android:textColor="@color/black"/>
+
+</LinearLayout>

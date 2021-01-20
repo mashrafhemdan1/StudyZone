@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(primaryKeys = {"name", "start_date", "start_time"})
+@Entity
 public class Period {
     @NonNull
     public String name = "";
@@ -21,5 +21,11 @@ public class Period {
 
     @ColumnInfo(name = "duration")
     public String duration;
+
+    @ColumnInfo(name = "subject")
+    public String subject;
+
+    @PrimaryKey(autoGenerate = true)
+    public int id = 0;
 
 }

@@ -2,7 +2,7 @@ package com.example.mystudyzone;
 
 import android.widget.Toast;
 
-import com.alamkanak.weekview.WeekViewEvent;
+
 
 
 
@@ -20,7 +20,7 @@ import retrofit.client.Response;
  * Created by Raquib-ul-Alam Kanak on 1/3/2014.
  * Website: http://alamkanak.github.io
  */
-public class AsynchronousCalFragment extends BaseCalFragment implements Callback<List<Event>> {
+public class AsynchronousActivity extends BaseActivity implements Callback<List<Event>> {
 
     private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
     boolean calledNetwork = false;
@@ -64,7 +64,7 @@ public class AsynchronousCalFragment extends BaseCalFragment implements Callback
     public void success(List<Event> events, Response response) {
         this.events.clear();
         for (Event event : events) {
-            this.events.add(event.toWeekViewEvent());
+            //this.events.add(event.toWeekViewEvent());
         }
         getWeekView().notifyDatasetChanged();
     }
@@ -72,6 +72,6 @@ public class AsynchronousCalFragment extends BaseCalFragment implements Callback
     @Override
     public void failure(RetrofitError error) {
         error.printStackTrace();
-        Toast.makeText(getActivity(), R.string.async_error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.async_error, Toast.LENGTH_SHORT).show();
     }
 }

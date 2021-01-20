@@ -53,4 +53,5 @@
     <string name="sat">Sat</string>
     <string name="todo">TODO</string>
     <string name="addnewpairs">Add New Pairs</string>
+    <string name="MonthlyView">Monthly View</string>
 </resources>

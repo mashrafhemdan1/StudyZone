@@ -3,7 +3,7 @@ package com.example.mystudyzone;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 
-import com.alamkanak.weekview.WeekViewEvent;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,11 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * An event model that was built for automatic serialization from json to object.
- * Created by Raquib-ul-Alam Kanak on 1/3/16.
- * Website: http://alamkanak.github.io
- */
+
 public class Event {
 
     @Expose @SerializedName("name")
@@ -29,14 +25,34 @@ public class Event {
     private String mEndTime;
     @Expose @SerializedName("color")
     private String mColor;
+    @Expose @SerializedName("description")
+    private String mDescription;
+    @Expose @SerializedName("category")
+    private String mCategory;
+    @Expose @SerializedName("subject")
+    private String mSubject;
 
-    public String getName() {
-        return mName;
+    public String getDescription() { return mDescription; }
+
+    public void setDescription(String description) {
+        this.mDescription = description;
     }
 
-    public void setName(String name) {
-        this.mName = name;
+    public String getCategory() { return mCategory; }
+
+    public void setCategory(String category) {
+        this.mCategory = category;
     }
+
+    public String getSubject() { return mSubject; }
+
+    public void setSubject(String subject) {
+        this.mSubject = subject;
+    }
+
+    public String getName() { return mName; }
+
+    public void setName(String name) { this.mName = name;}
 
     public int getDayOfMonth() {
         return mDayOfMonth;
@@ -107,6 +123,9 @@ public class Event {
         weekViewEvent.setStartTime(startTime);
         weekViewEvent.setEndTime(endTime);
         weekViewEvent.setColor(Color.parseColor(getColor()));
+        weekViewEvent.setDescription(getDescription());
+        weekViewEvent.setCategory(getCategory());
+        weekViewEvent.setSubject(getSubject());
 
         return weekViewEvent;
     }

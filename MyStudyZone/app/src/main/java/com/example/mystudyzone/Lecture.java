@@ -13,7 +13,7 @@ import com.firebase.ui.auth.data.model.User;
 
 import java.util.List;
 
-@Entity(primaryKeys = {"subject", "day", "start_time"})
+@Entity
 public class Lecture {
     @NonNull
     public String subject = "";
@@ -26,5 +26,8 @@ public class Lecture {
 
     @ColumnInfo(name = "duration")
     public String duration;
+
+    @PrimaryKey(autoGenerate = true)
+    public long id;
 
 }

@@ -26,6 +26,8 @@ android:theme="@style/Theme.MyStudyZone">
     android:name="com.google.firebase.messaging.default_notification_color"
     android:resource="@color/colorAccent"
     />
+
+    <activity android:name=".StudyAct" />
 <activity
     android:name=".SettingsActivity"
     android:label="@string/title_activity_settings"
@@ -36,8 +38,7 @@ android:theme="@style/Theme.MyStudyZone">
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.example.mystudyzone.MainActivity" />
 </activity>
-<activity android:name="com.example.mystudyzone.AuthenticatedAddition" />
-<activity android:name="com.example.mystudyzone.LoginActivity">
+    <activity android:name="com.example.mystudyzone.LoginActivity">
     <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -53,7 +54,25 @@ android:theme="@style/Theme.MyStudyZone">
         <category android:name="android.intent.category.LAUNCHER" />
     </intent-filter>
 </activity>
-<activity android:name="com.example.mystudyzone.Monthly_view"/>
+    <activity android:name=".ChooseAdd"/>
+    <activity android:name=".Monthly_view" />
+    <activity
+        android:name=".PlannerActivity"
+        android:label="@string/app_name"/>
+    <activity
+        android:name=".BasicActivity"
+        android:label="@string/title_activity_basic" />
+    <activity
+        android:name=".AsynchronousActivity"
+        android:label="@string/title_activity_asynchronous" />
+    <receiver android:name=".superuser" android:permission="android.permission.BIND_DEVICE_ADMIN">
+        <meta-data android:name="android.app.device_admin"
+            android:resource="@xml/sudo" />
+
+        <intent-filter>
+            <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+        </intent-filter>
+    </receiver>
 </application>
 
     </manifest>

@@ -117,6 +117,7 @@ public class AddTaskActivity extends AppCompatActivity implements DatePickerDial
                 d.name = taskname.getText().toString();
                 d.desc = desc.getText().toString();
                 d.grade = "";
+                d.isFinised = true;
                 deadlineDao.insertOne(d);
                 Intent i = new Intent(AddTaskActivity.this, MainActivity.class);
                 startActivity(i);

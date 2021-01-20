@@ -92,25 +92,30 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new HomeFragment();
                             tag = "home";
                             actionbar.setTitle("Home Page");
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    fragment, tag).commit();
                             break;
                         case R.id.action_network:
                             fragment = new MyPairsFragment();
                             tag = "network";
                             actionbar.setTitle("My Pairs");
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    fragment, tag).commit();
                             break;
                         case R.id.action_StudyMode:
-                            fragment = new StudyFragment();
+                            Intent i = new Intent(MainActivity.this, StudyAct.class);
                             tag = "studyMode";
                             actionbar.setTitle("Study Mode");
+                            startActivity(i);
                             break;
                         case R.id.action_planner:
-                            fragment = new PlannerFragment();
+                            Intent intent = new Intent(MainActivity.this, PlannerActivity.class);
                             tag = "planner";
                             actionbar.setTitle("Planner");
+                            startActivity(intent);
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            fragment, tag).commit();
+
                     return true;
                 }
             };

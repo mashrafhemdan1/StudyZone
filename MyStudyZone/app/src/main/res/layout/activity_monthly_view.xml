@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mystudyzone.Monthly_view">
+    tools:context=".Monthly_view">
+
+    <com.example.mystudyzone.Monthly_calender
+        android:id="@+id/monthly_calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
