@@ -1,21 +1,23 @@
 # StudyZone
-app focused on assisting the studying process by
-Ahmed Hassan
-Mohamed Hemdan
+app focused on assisting the studying process <br/>
+by
+Ahmed Hassan,
+Mohamed Hemdan &
 Ahmed Aboahmed
-for course CSCE Selected Topics Mobile Development Winter 2021
+<br/>
+for course CSCE Selected Topics Mobile Development Winter 2021<br/>
 Professor Mohamed Shalan
 
 
 
-Functionality
--Login
--Retrieve Data from DB
--Block Phone Functionality
--Dynamic Planner
--Performance Measurement
-
-Copyright [2021]
+Functionality<br/>
+-Login <br/>
+-Retrieve Data from DB<br/>
+-Block Phone Functionality<br/>
+-Dynamic Planner<br/>
+-Performance Measurement<br/>
+<br/>
+Copyright [2021] [Ahmed Hassan, Mohamed Hemdan & Ahmed Aboahmed]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
