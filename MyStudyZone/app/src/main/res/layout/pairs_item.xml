@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/pair_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintStart_toEndOf="@+id/pair_picture"
+        app:layout_constraintTop_toTopOf="@+id/pair_picture" />
+
+    <ImageView
+        android:id="@+id/pair_picture"
+        android:layout_width="76dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/pair_university"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="University"
+        app:layout_constraintStart_toStartOf="@+id/pair_name"
+        app:layout_constraintTop_toBottomOf="@+id/pair_name" />
+
+    <Button
+        android:id="@+id/action_button"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pair_picture" />
+</androidx.constraintlayout.widget.ConstraintLayout>

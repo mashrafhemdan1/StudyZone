@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_userlogin);
 
         // Here, you can list authorized authentication requirements. I only support email in this demo.
         List<AuthUI.IdpConfig> providers = Arrays.asList(

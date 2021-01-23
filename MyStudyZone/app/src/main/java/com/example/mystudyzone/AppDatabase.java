@@ -6,7 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Lecture.class, Period.class, Deadline.class}, version = 5)
+import net.sqlcipher.database.SQLiteDatabase;
+
+@Database(entities = {Lecture.class, Period.class, Deadline.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 

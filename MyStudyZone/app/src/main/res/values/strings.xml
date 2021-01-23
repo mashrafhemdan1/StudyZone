@@ -1,4 +1,5 @@
 <resources>
+    <string name="ip">http://192.168.1.8:3000/</string>
     <string name="app_name">MyStudyZone</string>
     <string name="menu_network">My Pairs</string>
     <string name="menu_addTask">Add Task</string>

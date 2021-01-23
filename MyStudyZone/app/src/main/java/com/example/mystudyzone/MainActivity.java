@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomAppBar bottomAppBar;
     private FloatingActionButton mFab;
     private BottomNavigationView bottomNavView;
-    private Toolbar toolbar;
+    public Toolbar toolbar;
     private static boolean logged_in = false;
 
     @Override

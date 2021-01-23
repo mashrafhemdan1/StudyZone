@@ -1,36 +1,30 @@
 package com.example.mystudyzone;
 
+import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,46 +34,74 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyPairsFragment extends Fragment {
-    static ListView pairs_list;
+public class RequestsAdapter extends ArrayAdapter<String> {
+    static JSONArray pairs;
     static RequestQueue queue;
-    public MyPairsFragment(){ setHasOptionsMenu(true);}
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_mypairs, container, false);
-        //return super.onCreateView(inflater, container, savedInstanceState);
-        pairs_list = (ListView) v.findViewById(R.id.pairsList);
-        queue = Volley.newRequestQueue(getActivity());
-        startGettingPairs();
-        Log.d("pair", "done");
-        return v;
+    //List<Deadline> deadline;
+    Context mContext;
+    public RequestsAdapter(@NonNull Context context, JSONArray pairs) {
+        super(context, R.layout.upcoming_item);
+        this.mContext = context;
+        this.pairs = pairs;
     }
+
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.pairs, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+    public int getCount() {
+        return pairs.length();
     }
+
+    @NonNull
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_newpairs) {
-            getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new AddPairsFragment()).commit();
-            return true;
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        ViewHolder viewHolder = new ViewHolder();
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.request_item, parent, false);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.pair_name);
+            viewHolder.university = (TextView) convertView.findViewById(R.id.pair_university);
+            viewHolder.picture = (ImageView) convertView.findViewById(R.id.pair_picture);
+            viewHolder.button = (Button) convertView.findViewById(R.id.action_button);
+            convertView.setTag(viewHolder);
         }
-        return super.onOptionsItemSelected(item);
+        else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        //TODO: adjust the pairs calling here
+        queue = Volley.newRequestQueue((MainActivity)mContext);
+        try {
+            String name = pairs.getJSONObject(position).getString("FName") + " " + pairs.getJSONObject(position).getString("LName");
+            viewHolder.name.setText(name);
+            viewHolder.university.setText(pairs.getJSONObject(position).getString("university"));
+            viewHolder.picture.setImageResource(R.drawable.ic_person);
+            viewHolder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    start_acceptRequest (position);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //viewHolder.picture.setImageResource();
+        return convertView;
     }
 
-    public void startGettingPairs(){
-        getMyPairsTask task = new getMyPairsTask((MainActivity) getActivity()); //TODO: see this casting
-        task.execute();
+    static class ViewHolder{
+        TextView name;
+        TextView university;
+        ImageView picture;
+        Button button;
     }
 
-    private static class getMyPairsTask extends AsyncTask<Integer, Integer, String>{
+    public void start_acceptRequest (int position){
+        RequestsAdapter.acceptRequestTask task = new RequestsAdapter.acceptRequestTask((MainActivity) mContext); //TODO: see this casting
+        task.execute(position);
+    }
+
+    private static class acceptRequestTask extends AsyncTask<Integer, Integer, String> {
+        private String TAG = "acceptRequestTask";
         private WeakReference<MainActivity> activityWeakReference;
-        private String TAG = "getMyPairsTask";
-        getMyPairsTask(MainActivity activity){
+        acceptRequestTask(MainActivity activity){
             activityWeakReference = new WeakReference<MainActivity>(activity);
         }
         @Override
@@ -94,7 +116,7 @@ public class MyPairsFragment extends Fragment {
 
         @Override
         protected String doInBackground(Integer... integers) { //go outside the main thread
-            showUserPairs();
+            acceptRequest(integers[0]);
             return "Done";
         }
 
@@ -118,7 +140,8 @@ public class MyPairsFragment extends Fragment {
             //Toast.makeText(activity, "Finished!", Toast.LENGTH_SHORT).show();
         }
 
-        private void showUserPairs() {
+
+        private void acceptRequest(int position) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             Gson gson = new Gson();
 
@@ -142,23 +165,37 @@ public class MyPairsFragment extends Fragment {
 
                 String idToken = task.getResult().getToken();
 
-                String getMyPairs_url = "http://10.0.2.2:3000/getMyPairs";
+                String acceptRequest_url = "http://10.0.2.2:3000/acceptRequest";
                 Log.d("pair", "In the Background thread now");
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest (Request.Method.POST, getMyPairs_url, null, new Response.Listener<JSONArray>() {
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    jsonBody.put("sender_id", pairs.getJSONObject(position).getString("userid"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                ;
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, acceptRequest_url, jsonBody, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) { //got executed in the UI main thread
+                    public void onResponse(JSONObject response) { //got executed in the UI main thread
                         Log.d("pair", "ArrayRequest Response Success");
                         MainActivity activity = activityWeakReference.get();
-                        PairsAdapter pairsAdapter = new PairsAdapter(activity, response);
-                        pairs_list.setAdapter(pairsAdapter);
-                        Toast.makeText(activity, "Request Served", Toast.LENGTH_SHORT).show();
+                        try {
+                            if(response.getString("response").equals("done")){
+                                Toast.makeText(activity, "Accepted", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("pair error", error.toString());
                         MainActivity activity = activityWeakReference.get();
-                        Toast.makeText(activity, "Error in Request Response", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Error in Accepting Request", Toast.LENGTH_SHORT).show();
                     }
                 })
                 {
@@ -169,19 +206,11 @@ public class MyPairsFragment extends Fragment {
                         params.put("Content-Type", "application/json");
                         return params;
                     }
-
-                    /*@Override
-                    public byte[] getBody() {
-                        LoginActivity.MyRequest r = new LoginActivity.MyRequest();
-                        r.fcmToken = token;
-
-                        String json = gson.toJson(r);
-                        return json.getBytes();
-                    }*/
                 };
-                queue.add(jsonArrayRequest);
+                queue.add(jsonObjectRequest);
             });
         }
 
     }
 }
+
