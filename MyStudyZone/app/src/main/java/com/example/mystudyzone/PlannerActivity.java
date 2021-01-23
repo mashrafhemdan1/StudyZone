@@ -9,7 +9,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class PlannerActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +19,7 @@ public class PlannerActivity extends AppCompatActivity {
         findViewById(R.id.buttonBasic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlannerActivity.this, BasicActivity.class);
+                Intent intent = new Intent(PlannerActivity.this, ChooserBasicActivity.class);
                 startActivity(intent);
             }
         });
@@ -28,7 +27,7 @@ public class PlannerActivity extends AppCompatActivity {
         findViewById(R.id.buttonAsynchronous).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlannerActivity.this, AsynchronousActivity.class);
+                Intent intent = new Intent(PlannerActivity.this, ChooserAsynchronousActivity.class);
                 startActivity(intent);
             }
         });

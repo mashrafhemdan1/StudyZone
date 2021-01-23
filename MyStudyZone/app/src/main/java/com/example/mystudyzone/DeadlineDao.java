@@ -18,8 +18,10 @@ public interface DeadlineDao {
     @Query("SELECT * FROM Deadline WHERE date > (:curDate) ORDER BY date, time")
     List<Deadline> getUpcoming(String curDate);
 
-    @Query("SELECT * FROM Deadline WHERE date > (:curDate)+7 AND isStudied = 0 ORDER BY date, time")
+    @Query("SELECT * FROM Deadline WHERE date > (:curDate) AND isStudied = 0 ORDER BY date, time")
     List<Deadline> getDeadlineForWeek(String curDate);
+    @Query("SELECT grade FROM Deadline WHERE subject = (:subject) AND category = (:category) ")
+    String [] getgrades(String subject, String category);
 
     @Insert
     void insertAll(Deadline... deads);
@@ -35,5 +37,7 @@ public interface DeadlineDao {
 
     @Query("SELECT count(*) FROM Deadline WHERE date < (:curDate)")
     int getCountAll(String curDate);
+    @Query("UPDATE Deadline SET grade = :grade WHERE subject = :subject AND category = :category AND name = :name")
+    int updateGrade(String grade , String subject, String category, String name);
 
 }

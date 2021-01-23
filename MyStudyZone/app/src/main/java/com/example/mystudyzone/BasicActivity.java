@@ -2,9 +2,11 @@ package com.example.mystudyzone;
 
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import static java.lang.Integer.parseInt;
 
@@ -14,7 +16,10 @@ public class BasicActivity extends BaseActivity {
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.
+        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String Date = dateFormat.format(calendar.getTime());
 
 
         //events.add(event);
@@ -39,7 +44,7 @@ public class BasicActivity extends BaseActivity {
 
 
 
-        int period = 2;
+
         /*
         AppDatabase db = AppDatabase.getInstance(this);
         PeriodDao periodDao = db.periodDao();
@@ -77,7 +82,9 @@ public class BasicActivity extends BaseActivity {
         }*/
         AppDatabase db = AppDatabase.getInstance(this);
         DeadlineDao deadlineDao = db.deadlineDao();
+        PeriodDao periodDao = db.periodDao();
         List<Deadline> deadlines = deadlineDao.getAll();
+        List<Period> Periods = periodDao.getAll();
 
         for(int i = 0; i < deadlines.size(); i++){
             Calendar startTime = Calendar.getInstance();
@@ -99,8 +106,27 @@ public class BasicActivity extends BaseActivity {
             addedevent.setColor(getResources().getColor(R.color.event_color_01));
             events.add(addedevent);
         }
+        for(int i = 0; i < Periods.size(); i++){
+            Calendar startTime = Calendar.getInstance();
+            int day_of_month = parseInt(Periods.get(i).start_date.substring(8, 10));
+            int hour_of_day = parseInt(Periods.get(i).start_time.substring(0, 2));
+            int minute = parseInt(Periods.get(i).start_time.substring(3, 5));
+            int month = parseInt(Periods.get(i).start_date.substring(5, 7))-1;
+            int year = parseInt(Periods.get(i).start_date.substring(0, 4));
+            startTime.set(Calendar.DAY_OF_MONTH, day_of_month);
+            startTime.set(Calendar.HOUR_OF_DAY, hour_of_day);
+            startTime.set(Calendar.MINUTE, minute);
+            startTime.set(Calendar.MONTH, newMonth-1);
+            startTime.set(Calendar.YEAR, newYear);
+            Calendar endTime = (Calendar) startTime.clone();
+            endTime.add(Calendar.HOUR_OF_DAY, parseInt(Periods.get(i).duration));
 
 
+            com.example.mystudyzone.WeekViewEvent addedevent = new com.example.mystudyzone.WeekViewEvent(Periods.get(i).id, Periods.get(i).name,startTime, endTime, "HI HI CAPTAIN", Periods.get(i).type, Periods.get(i).subject);
+            addedevent.setColor(getResources().getColor(R.color.event_color_01));
+            events.add(addedevent);
+        }
+        // gets deadlines that need to be studied in general we need those of this month only
 
         /*boolean isthere = false;
         for (int i = 0; i < events.size(); i++){
