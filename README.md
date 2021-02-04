@@ -1,15 +1,17 @@
 # StudyZone
-Android application with an IOS UI prototype. <br>
+It's an Android application that aims at improving student studying experience. It helps students with study time allocation, find pairs and set study mode periods inside the phone. It's also implemented in IOS but as an UI prototype. <br>
+For more information about the app, look at the StudyMode Presentation.pptx PowerPoint files. It contains more details about the project<br>
+
 Developed by Ahmed Hassan, Mohamed Hemdan and Ahmed Aboahmed <br>
 for course CSCE SELECTED TOPICS MOBILE APP DEV WINTER 2021<br>
 Professor Mohamed Shalan <br>
 
 Functionality <br>
--planner
--adaptive calender
--login w firebase
--study mode / lock phone
--prototype for pair/chat system
+-planner<br>
+-adaptive calender<br>
+-login w firebase<br>
+-study mode / lock phone<br>
+-prototype for pair/chat system<br>
 
 
 Copyright [2021] [Ahmed Hassan, Mohamed Hemdan and Ahmed Aboahmed]
